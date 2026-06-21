@@ -62,18 +62,19 @@ const Index = () => {
   return (
     <Layout>
       {/* HERO */}
-      <section className="relative min-h-[90svh] lg:min-h-[100svh] flex items-center overflow-hidden pt-20">
+      <section className="relative overflow-hidden min-h-svh lg:min-h-[100svh] flex items-end lg:items-center">
+        {/* Full-bleed background — all breakpoints */}
         <div className="absolute inset-0">
           <img
             src={heroKaaba}
             alt="The Holy Kaaba in Mecca at golden hour"
-            className="w-full h-full object-cover object-[center_35%] md:object-[center_35%] animate-none md:animate-ken-burns"
+            className="w-full h-full object-cover object-[center_35%] animate-ken-burns"
           />
-          <div className="absolute inset-0 bg-gradient-hero" />
-          <div className="absolute inset-0 bg-gradient-to-r from-background/50 via-background/30 to-background/10" />
+          <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/40 to-background/20" />
+          <div className="absolute inset-0 bg-gradient-to-r from-background/50 via-background/20 to-transparent" />
         </div>
 
-        <div className="container-luxe relative z-10 py-24 md:py-28 lg:py-32">
+        <div className="container-luxe relative z-10 pt-[calc(80px+2rem)] md:pt-[calc(116px+2rem)] lg:pt-[180px] pb-10 lg:pb-20">
           <div className="max-w-2xl animate-fade-in-up">
             <div className="eyebrow mb-6">
               <span className="w-8 h-px bg-gold" /> Najma Global Tours & Consulting
