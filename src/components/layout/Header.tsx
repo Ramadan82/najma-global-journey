@@ -67,7 +67,7 @@ export default function Header() {
           <img
             src={najmaLogo}
             alt="Najma Global logo"
-            className="w-12 h-12 sm:w-14 sm:h-14 object-contain transition-transform group-hover:rotate-12 bg-white/90 rounded-full p-1"
+            className="w-12 h-12 sm:w-14 sm:h-14 object-contain transition-transform group-hover:rotate-12"
           />
           <div className="leading-tight hidden sm:block">
             <div className="font-display text-lg sm:text-xl text-foreground">Najma <span className="text-gold">Global</span></div>

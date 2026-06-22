@@ -85,7 +85,7 @@ export default function AdminForgotPassword() {
         <div className="absolute inset-0 bg-gradient-to-br from-background/80 via-background/50 to-transparent" />
         <div className="relative z-10 flex flex-col justify-between p-12 w-full">
           <Link to="/" className="flex items-center gap-3">
-            <img src={najmaLogo} alt="Najma Global" className="w-12 h-12 object-contain bg-white/90 rounded-full p-1" />
+            <img src={najmaLogo} alt="Najma Global" className="w-12 h-12 object-contain" />
             <div className="leading-tight">
               <div className="font-display text-xl text-foreground">Najma <span className="text-gold">Global</span></div>
               <div className="text-[10px] uppercase tracking-[0.25em] text-muted-foreground">Tours & Consulting</div>
