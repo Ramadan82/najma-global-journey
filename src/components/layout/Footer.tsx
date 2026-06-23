@@ -8,8 +8,11 @@ export default function Footer() {
       <div className="container-luxe py-16 grid gap-12 md:grid-cols-4">
         <div className="md:col-span-2 max-w-sm">
           <div className="flex items-center gap-3 mb-5">
-            <img src={najmaLogo} alt="Najma Global logo" className="w-16 h-16 object-contain" />
-            <div className="font-display text-2xl">Najma <span className="text-gold">Global</span></div>
+            <img src={najmaLogo} alt="Najma Global logo" className="w-20 h-20 object-contain" />
+            <div className="leading-tight">
+              <div className="font-display text-2xl">Najma <span className="text-gold">Global</span></div>
+              <div className="text-[10px] uppercase tracking-[0.25em] text-muted-foreground">Tours & Consulting</div>
+            </div>
           </div>
           <p className="text-sm text-muted-foreground leading-relaxed">
             A premier travel & education consultancy curating sacred journeys and global academic opportunities for discerning travellers across Nigeria.

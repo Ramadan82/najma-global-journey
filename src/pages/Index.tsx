@@ -206,7 +206,7 @@ const Index = () => {
             </div>
 
             {/* Right: image */}
-            <div className="relative hidden lg:block">
+            <div className="relative">
               <div className="relative rounded-2xl overflow-hidden shadow-[0_30px_60px_-20px_hsl(232_40%_20%/0.2)]">
                 <img
                   src={whyNajma}
