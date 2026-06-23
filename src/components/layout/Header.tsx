@@ -63,13 +63,13 @@ export default function Header() {
       <TopBar />
       <div className="container-luxe flex items-center justify-between h-20">
 
-        <Link to="/" className="flex items-center gap-3 group shrink-0">
+        <Link to="/" className="flex items-center gap-1.5 group shrink-0">
           <img
             src={najmaLogo}
             alt="Najma Global logo"
-            className="w-12 h-12 sm:w-14 sm:h-14 object-contain transition-transform group-hover:rotate-12"
+            className="w-20 h-20 sm:w-24 sm:h-24 object-contain transition-transform group-hover:rotate-12"
           />
-          <div className="leading-tight hidden sm:block">
+          <div className="leading-tight">
             <div className="font-display text-lg sm:text-xl text-foreground">Najma <span className="text-gold">Global</span></div>
             <div className="text-[10px] uppercase tracking-[0.25em] text-muted-foreground">Tours & Consulting</div>
           </div>
