@@ -10,8 +10,8 @@ import madinah from "@/assets/madinah.jpg";
 import studyAbroad from "@/assets/study-abroad.jpg";
 import plane from "@/assets/plane.jpg";
 import travelVisas from "@/assets/travel-visas.jpg";
-import whyNajma from "@/assets/why-najma.jpg";
 import medicalTourism from "@/assets/medical-tourism.jpg";
+import whyNajma from "@/assets/why-najma.png";
 
 const offerings = [
   {
