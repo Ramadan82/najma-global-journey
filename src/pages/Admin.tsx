@@ -996,6 +996,19 @@ export default function Admin() {
                 <Label>Duration</Label>
                 <Input value={editingScholarship.duration} onChange={(e) => setEditingScholarship({ ...editingScholarship, duration: e.target.value })} placeholder="e.g. 1 Year Masters" />
               </div>
+              <div className="space-y-2">
+                <Label>Degree Type</Label>
+                <Select value={editingScholarship.degreeType || ""} onValueChange={(v) => setEditingScholarship({ ...editingScholarship, degreeType: v })}>
+                  <SelectTrigger><SelectValue placeholder="Select degree type" /></SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="Bachelor's">Bachelor's</SelectItem>
+                    <SelectItem value="Master's">Master's</SelectItem>
+                    <SelectItem value="PhD">PhD</SelectItem>
+                    <SelectItem value="Diploma">Diploma</SelectItem>
+                    <SelectItem value="Certificate">Certificate</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
               <div className="sm:col-span-2 space-y-2">
                 <Label>Application Link (Optional)</Label>
                 <Input value={editingScholarship.link} onChange={(e) => setEditingScholarship({ ...editingScholarship, link: e.target.value })} placeholder="https://..." />

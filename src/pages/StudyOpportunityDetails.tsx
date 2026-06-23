@@ -151,6 +151,12 @@ export default function StudyOpportunityDetails() {
                   <span className="text-sm text-muted-foreground">Duration</span>
                   <span className="text-sm font-medium">{scholarship.duration}</span>
                 </div>
+                {scholarship.degreeType && (
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm text-muted-foreground">Degree</span>
+                    <span className="text-sm font-medium">{scholarship.degreeType}</span>
+                  </div>
+                )}
                 <div className="flex items-center justify-between">
                   <span className="text-sm text-muted-foreground">Provider</span>
                   <span className="text-sm font-medium text-right">{scholarship.institution}</span>

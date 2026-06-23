@@ -53,6 +53,7 @@ export type Scholarship = {
   imageUrl?: string;
   link?: string;
   description?: string;
+  degreeType?: string;
 };
 
 export type MedicalAffiliation = {
@@ -114,6 +115,7 @@ function normalizeScholarship(row: any): Scholarship {
     imageUrl: row.image_url,
     link: row.link,
     description: row.description,
+    degreeType: row.degree_type,
   };
 }
 
@@ -151,6 +153,7 @@ export async function upsertScholarship(s: Partial<Scholarship> & { id: string }
     image_url: s.imageUrl,
     link: s.link,
     description: s.description,
+    degree_type: s.degreeType,
     updated_at: new Date().toISOString(),
   };
 

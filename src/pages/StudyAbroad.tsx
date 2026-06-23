@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { z } from "zod";
-import { ArrowRight, Check, GraduationCap, Globe, Calendar, RefreshCw } from "lucide-react";
+import { ArrowRight, Check, GraduationCap, Globe, Calendar, RefreshCw, Search, X } from "lucide-react";
 import { toast } from "sonner";
 import Layout from "@/components/layout/Layout";
 import SocialShare from "@/components/SocialShare";
@@ -26,6 +26,28 @@ export default function StudyAbroad() {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [scholarships, setScholarships] = useState<Scholarship[]>([]);
   const [loading, setLoading] = useState(true);
+  const [search, setSearch] = useState("");
+  const [filterCountry, setFilterCountry] = useState("all");
+  const [filterCourse, setFilterCourse] = useState("all");
+  const [filterFunding, setFilterFunding] = useState("all");
+  const [filterDegree, setFilterDegree] = useState("all");
+
+  const filtered = useMemo(() => {
+    const q = search.toLowerCase();
+    return scholarships.filter((s) => {
+      if (q && !s.title.toLowerCase().includes(q) && !s.institution.toLowerCase().includes(q) && !s.location.toLowerCase().includes(q) && !s.highlights.some(h => h.toLowerCase().includes(q))) return false;
+      if (filterCountry !== "all" && !s.location.toLowerCase().includes(filterCountry.toLowerCase())) return false;
+      if (filterCourse !== "all" && !s.title.toLowerCase().includes(filterCourse.toLowerCase()) && !s.highlights.some(h => h.toLowerCase().includes(filterCourse.toLowerCase()))) return false;
+      if (filterFunding === "full" && !s.amount.toLowerCase().includes("full")) return false;
+      if (filterFunding === "partial" && !s.amount.toLowerCase().includes("partial")) return false;
+      if (filterFunding === "affordable" && !s.amount.toLowerCase().includes("affordable")) return false;
+      if (filterDegree !== "all" && !s.title.toLowerCase().includes(filterDegree.toLowerCase()) && !s.highlights.some(h => h.toLowerCase().includes(filterDegree.toLowerCase()))) return false;
+      return true;
+    });
+  }, [scholarships, search, filterCountry, filterCourse, filterFunding, filterDegree]);
+
+  const hasFilters = search || filterCountry !== "all" || filterCourse !== "all" || filterFunding !== "all" || filterDegree !== "all";
+  const clearFilters = () => { setSearch(""); setFilterCountry("all"); setFilterCourse("all"); setFilterFunding("all"); setFilterDegree("all"); };
 
   useEffect(() => {
     (async () => {
@@ -76,11 +98,63 @@ export default function StudyAbroad() {
       {/* Study Opportunities */}
       <section className="py-20 bg-secondary/10">
         <div className="container-luxe">
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
             <div>
               <div className="eyebrow mb-3">Study Opportunities</div>
               <h2 className="font-display text-4xl sm:text-5xl">Unlock your global potential.</h2>
             </div>
+          </div>
+
+          {/* Search & filters */}
+          <div className="flex flex-wrap gap-3 mb-8">
+            <div className="relative flex-1 min-w-[200px]">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+              <Input
+                placeholder="Search by title, institution, country…"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                className="pl-9"
+              />
+            </div>
+            <Select value={filterCountry} onValueChange={setFilterCountry}>
+              <SelectTrigger className="w-[160px]"><SelectValue placeholder="Country" /></SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">All Countries</SelectItem>
+                {COUNTRIES.map((c) => <SelectItem key={c} value={c}>{c}</SelectItem>)}
+              </SelectContent>
+            </Select>
+            <Select value={filterCourse} onValueChange={setFilterCourse}>
+              <SelectTrigger className="w-[180px]"><SelectValue placeholder="Course" /></SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">All Courses</SelectItem>
+                {COURSES.map((c) => <SelectItem key={c.name} value={c.name}>{c.name}</SelectItem>)}
+              </SelectContent>
+            </Select>
+            <Select value={filterFunding} onValueChange={setFilterFunding}>
+              <SelectTrigger className="w-[180px]"><SelectValue placeholder="Funding" /></SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">All Funding Types</SelectItem>
+                <SelectItem value="full">Fully Funded</SelectItem>
+                <SelectItem value="partial">Partially Funded</SelectItem>
+                <SelectItem value="affordable">Affordable Tuition</SelectItem>
+              </SelectContent>
+            </Select>
+            <Select value={filterDegree} onValueChange={setFilterDegree}>
+              <SelectTrigger className="w-[160px]"><SelectValue placeholder="Degree" /></SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">All Degrees</SelectItem>
+                <SelectItem value="bachelor">Bachelor's</SelectItem>
+                <SelectItem value="master">Master's</SelectItem>
+                <SelectItem value="phd">PhD</SelectItem>
+                <SelectItem value="diploma">Diploma</SelectItem>
+                <SelectItem value="certificate">Certificate</SelectItem>
+              </SelectContent>
+            </Select>
+            {hasFilters && (
+              <Button variant="ghost" size="sm" onClick={clearFilters} className="text-muted-foreground">
+                <X className="w-4 h-4 mr-1" /> Clear
+              </Button>
+            )}
           </div>
 
           <div className="grid md:grid-cols-3 gap-6">
@@ -89,12 +163,13 @@ export default function StudyAbroad() {
                 <RefreshCw className="w-10 h-10 animate-spin mx-auto text-gold/40 mb-4" />
                 <p className="text-muted-foreground">Loading opportunities...</p>
               </div>
-            ) : scholarships.length === 0 ? (
+            ) : filtered.length === 0 ? (
               <div className="col-span-3 py-20 text-center glass-card rounded-sm border-dashed">
-                <p className="text-muted-foreground">No opportunities currently listed. Please check back soon.</p>
+                <p className="text-muted-foreground">{hasFilters ? "No opportunities match your filters." : "No opportunities currently listed. Please check back soon."}</p>
+                {hasFilters && <Button variant="ghost" size="sm" onClick={clearFilters} className="mt-3 text-gold">Clear filters</Button>}
               </div>
             ) : (
-              scholarships.map((s) => (
+              filtered.map((s) => (
                 <div
                   key={s.id}
                   className={`relative glass-card rounded-sm overflow-hidden flex flex-col transition-all duration-500 hover:border-gold/60 ${s.isFeatured ? "border-gold/50 shadow-gold" : ""}`}
@@ -110,13 +185,18 @@ export default function StudyAbroad() {
                     <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent" />
 
                     {/* Top badges */}
-                    <div className="absolute top-4 left-4 flex gap-2">
+                    <div className="absolute top-4 left-4 flex gap-2 flex-wrap">
                       <span className="bg-gold text-gold-foreground text-[10px] uppercase tracking-[0.22em] px-3 py-1.5 rounded-sm font-semibold">
                         Study Opportunity
                       </span>
                       <span className="bg-background/70 backdrop-blur-sm border border-border text-[10px] uppercase tracking-[0.22em] px-3 py-1.5 rounded-sm">
                         {s.duration}
                       </span>
+                      {s.degreeType && (
+                        <span className="bg-background/70 backdrop-blur-sm border border-gold/40 text-gold text-[10px] uppercase tracking-[0.22em] px-3 py-1.5 rounded-sm font-semibold">
+                          {s.degreeType}
+                        </span>
+                      )}
                     </div>
                     <div className="absolute top-4 right-4 flex items-center gap-1 bg-background/70 backdrop-blur-sm border border-gold/30 px-2.5 py-1.5 rounded-sm">
                       <Globe className="w-3 h-3 text-gold" />

@@ -80,7 +80,7 @@ export default function AdminLogin() {
         <div className="absolute inset-0 bg-gradient-to-br from-background/80 via-background/50 to-transparent" />
         <div className="relative z-10 flex flex-col justify-between p-12 w-full">
           <Link to="/" className="flex items-center gap-3">
-            <img src={najmaLogo} alt="Najma Global" className="w-12 h-12 object-contain" />
+            <img src={najmaLogo} alt="Najma Global" className="w-20 h-20 object-contain" />
             <div className="leading-tight">
               <div className="font-display text-xl text-foreground">Najma <span className="text-gold">Global</span></div>
               <div className="text-[10px] uppercase tracking-[0.25em] text-muted-foreground">Tours & Consulting</div>
@@ -98,9 +98,12 @@ export default function AdminLogin() {
       {/* Right — form panel */}
       <div className="flex-1 flex flex-col justify-center items-center px-6 py-12 bg-background">
         {/* Mobile logo */}
-        <Link to="/" className="flex lg:hidden items-center gap-3 mb-10">
-          <img src={najmaLogo} alt="Najma Global" className="w-10 h-10 object-contain" />
-          <div className="font-display text-xl">Najma <span className="text-gold">Global</span></div>
+        <Link to="/" className="flex lg:hidden items-center gap-1.5 mb-10">
+          <img src={najmaLogo} alt="Najma Global" className="w-20 h-20 object-contain" />
+          <div className="leading-tight">
+            <div className="font-display text-xl">Najma <span className="text-gold">Global</span></div>
+            <div className="text-[10px] uppercase tracking-[0.25em] text-muted-foreground">Tours & Consulting</div>
+          </div>
         </Link>
 
         <div className="w-full max-w-sm">
