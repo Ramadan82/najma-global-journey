@@ -198,7 +198,7 @@ export default function StudyAbroad() {
                         </span>
                       )}
                     </div>
-                    <div className="absolute top-4 right-4 flex items-center gap-1 bg-background/70 backdrop-blur-sm border border-gold/30 px-2.5 py-1.5 rounded-sm">
+                    <div className="absolute bottom-14 right-4 flex items-center gap-1 bg-background/70 backdrop-blur-sm border border-gold/30 px-2.5 py-1.5 rounded-sm">
                       <Globe className="w-3 h-3 text-gold" />
                       <span className="text-[10px] font-semibold tracking-wider uppercase">{s.location}</span>
                     </div>
