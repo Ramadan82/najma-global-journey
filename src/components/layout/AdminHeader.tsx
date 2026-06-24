@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import najmaLogo from "@/assets/najma.png";
 import TopBar from "@/components/layout/TopBar";
+import SplitLogo from "@/components/SplitLogo";
 import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/lib/supabase";
 
@@ -92,11 +93,7 @@ export default function AdminHeader() {
       <div className="container-luxe flex items-center justify-between h-20">
 
         <Link to="/" className="flex items-center gap-1.5 group shrink-0">
-          <img
-            src={najmaLogo}
-            alt="Najma Global logo"
-            className="w-20 h-20 sm:w-24 sm:h-24 object-contain transition-transform group-hover:rotate-12"
-          />
+          <SplitLogo scrolled={scrolled} className="group-hover:rotate-12 transition-transform duration-300" />
           <div className="leading-tight">
             <div className="font-display text-lg sm:text-xl text-foreground">Najma <span className="text-gold">Admin</span></div>
             <div className="text-[10px] uppercase tracking-[0.25em] text-muted-foreground">Management Portal</div>

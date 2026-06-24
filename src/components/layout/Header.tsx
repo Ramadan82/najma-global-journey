@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import najmaLogo from "@/assets/najma.png";
 import TopBar from "@/components/layout/TopBar";
+import SplitLogo from "@/components/SplitLogo";
 import { useAuth } from "@/hooks/useAuth";
 
 const serviceLinks = [
@@ -64,28 +65,7 @@ export default function Header() {
       <div className="container-luxe flex items-center justify-between h-20">
 
         <Link to="/" className="flex items-center gap-1.5 group shrink-0">
-          <div className="relative w-20 h-20 sm:w-24 sm:h-24 shrink-0 group-hover:rotate-12 transition-transform duration-300">
-            {/* Top half — always white */}
-            <img
-              src={najmaLogo}
-              alt=""
-              aria-hidden
-              className="absolute inset-0 w-full h-full object-contain transition-all duration-500"
-              style={{ clipPath: "inset(0 0 50% 0)", filter: "brightness(0) invert(1)" }}
-            />
-            {/* Bottom half — white unscrolled, gold on scroll */}
-            <img
-              src={najmaLogo}
-              alt="Najma Global logo"
-              className="absolute inset-0 w-full h-full object-contain transition-all duration-500"
-              style={{
-                clipPath: "inset(50% 0 0 0)",
-                filter: scrolled
-                  ? "brightness(0) saturate(100%) invert(55%) sepia(80%) saturate(600%) hue-rotate(345deg) brightness(110%)"
-                  : "brightness(0) invert(1)",
-              }}
-            />
-          </div>
+          <SplitLogo scrolled={scrolled} className="group-hover:rotate-12 transition-transform duration-300" />
           <div className="leading-tight">
             <div className="font-display text-lg sm:text-xl text-foreground">Najma <span className="text-gold">Global</span></div>
             <div className="text-[10px] uppercase tracking-[0.25em] text-muted-foreground">Tours & Consulting</div>

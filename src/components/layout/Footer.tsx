@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Mail, Phone, MapPin, Instagram, Facebook, Twitter, Music2 } from "lucide-react";
-import najmaLogo from "@/assets/najma.png";
+import SplitLogo from "@/components/SplitLogo";
 
 export default function Footer() {
   return (
@@ -8,7 +8,7 @@ export default function Footer() {
       <div className="container-luxe py-16 grid gap-12 md:grid-cols-4">
         <div className="md:col-span-2 max-w-sm">
           <div className="flex items-center gap-3 mb-5">
-            <img src={najmaLogo} alt="Najma Global logo" className="w-20 h-20 object-contain" />
+            <SplitLogo alwaysGold size="w-20 h-20" />
             <div className="leading-tight">
               <div className="font-display text-2xl">Najma <span className="text-gold">Global</span></div>
               <div className="text-[10px] uppercase tracking-[0.25em] text-muted-foreground">Tours & Consulting</div>

@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { signIn, isAdminEmail } from "@/lib/auth";
-import najmaLogo from "@/assets/najma.png";
+import SplitLogo from "@/components/SplitLogo";
 import heroKaaba from "@/assets/hero-kaaba.jpg";
 import { useAuth } from "@/hooks/useAuth";
 
@@ -80,7 +80,7 @@ export default function AdminLogin() {
         <div className="absolute inset-0 bg-gradient-to-br from-background/80 via-background/50 to-transparent" />
         <div className="relative z-10 flex flex-col justify-between p-12 w-full">
           <Link to="/" className="flex items-center gap-3">
-            <img src={najmaLogo} alt="Najma Global" className="w-20 h-20 object-contain" />
+            <SplitLogo alwaysGold size="w-20 h-20" />
             <div className="leading-tight">
               <div className="font-display text-xl text-foreground">Najma <span className="text-gold">Global</span></div>
               <div className="text-[10px] uppercase tracking-[0.25em] text-muted-foreground">Tours & Consulting</div>
@@ -99,7 +99,7 @@ export default function AdminLogin() {
       <div className="flex-1 flex flex-col justify-center items-center px-6 py-12 bg-background">
         {/* Mobile logo */}
         <Link to="/" className="flex lg:hidden items-center gap-1.5 mb-10">
-          <img src={najmaLogo} alt="Najma Global" className="w-20 h-20 object-contain" />
+          <SplitLogo alwaysGold size="w-20 h-20" />
           <div className="leading-tight">
             <div className="font-display text-xl">Najma <span className="text-gold">Global</span></div>
             <div className="text-[10px] uppercase tracking-[0.25em] text-muted-foreground">Tours & Consulting</div>
