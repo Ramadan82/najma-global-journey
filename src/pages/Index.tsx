@@ -76,9 +76,6 @@ const Index = () => {
 
         <div className="container-luxe relative z-10 pt-[calc(80px+2rem)] md:pt-[calc(116px+2rem)] lg:pt-[180px] pb-10 lg:pb-20">
           <div className="max-w-2xl animate-fade-in-up">
-            <div className="eyebrow mb-6">
-              <span className="w-8 h-px bg-gold" /> Najma Global Tours & Consulting
-            </div>
             <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl leading-[1.05] mb-6">
               If you can dream it,<br />
               <span className="text-gold italic">we can book it.</span>
